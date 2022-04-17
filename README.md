@@ -7,6 +7,7 @@
 </p> 
 
 
+
 # Neural-Texture-Extraction-Distribution
 
 The PyTorch implementation for our paper "[Neural Texture Extraction and Distribution for  Controllable Person Image Synthesis]()" (**CVPR2022 Oral**)
@@ -14,6 +15,7 @@ The PyTorch implementation for our paper "[Neural Texture Extraction and Distrib
 <p align='center'>  
   <img src='https://user-images.githubusercontent.com/30292465/163326992-f9781520-5891-4b09-b146-c5a7101e8549.png' width='500'/>
 </p>
+
 ## Installation
 
 #### Requirements
@@ -49,7 +51,6 @@ Several demos are provided. Please first download the resources by runing
 ```bash
 cd scripts
 ./download_demos.sh
-cd ..
 ```
 
 #### Pose Transfer
@@ -96,7 +97,6 @@ Coming Soon
   ```bash
   cd scripts
   ./download_dataset.sh
-  cd ..
   ```
 
   Or you can download these files manually：
@@ -158,4 +158,3 @@ If you change the number of GPUs, you may need to modify the batch_size in `./co
   ```
 
 The result images are save in `./result/fashion_512/inference ` and `./result/fashion_256/inference `. 
-
