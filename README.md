@@ -15,6 +15,9 @@ The PyTorch implementation for our paper "[Neural Texture Extraction and Distrib
 <p align='center'>  
   <img src='https://user-images.githubusercontent.com/30292465/163326992-f9781520-5891-4b09-b146-c5a7101e8549.png' width='500'/>
 </p>
+## News
+
+This repo is under development now. Some features have not been tested. It will be finished in the next few days.
 
 ## Installation
 
