@@ -1,0 +1,120 @@
+distributed: True
+image_to_tensorboard: True
+snapshot_save_iter: 50000
+snapshot_save_epoch: 20
+snapshot_save_start_iter: 20000
+snapshot_save_start_epoch: 20
+image_save_iter: 1000
+max_epoch: 200
+logging_iter: 100
+
+gen_optimizer:
+    type: adam
+    lr: 0.002
+    adam_beta1: 0.
+    adam_beta2: 0.99
+    lr_policy:
+        iteration_mode: False
+        type: step
+        step_size: 1000000
+        gamma: 1
+
+dis_optimizer:
+    type: adam
+    lr: 0.001882
+    adam_beta1: 0.
+    adam_beta2: 0.9905
+    lr_policy:
+        iteration_mode: False
+        type: step
+        step_size: 1000000
+        gamma: 1
+
+
+trainer:
+    type: trainers.extraction_distribution_trainer::Trainer
+    gan_mode: style_gan2
+    gan_start_iteration: 0
+    face_crop_method: util.face_crop::crop_face_from_output
+    d_reg_every: 16
+    r1: 10
+    loss_weight:
+      weight_perceptual: 1
+      weight_gan: 1.5
+      weight_attn_rec: 15
+      weight_face: 1
+    attn_weights: 
+      8: 1 
+      16: 1
+      32: 1
+      64: 1
+      128: 1
+      256: 1
+    vgg_param:
+      network: vgg19
+      layers: ['relu_1_1', 'relu_2_1', 'relu_3_1', 'relu_4_1', 'relu_5_1']
+      num_scales: 3
+      use_style_loss: True
+      style_to_perceptual: 1000
+
+gen:
+    type: generators.extraction_distribution_model::Generator
+    param:
+      size: 512
+      semantic_dim: 20
+      channels:
+        16: 512
+        32: 512
+        64: 512
+        128: 256
+        256: 128
+        512: 64
+        1024: 32
+      num_labels:
+        16: 16
+        32: 32
+        64: 32
+        128: 64
+        256: 64
+        512: False
+      match_kernels:
+        16: 1
+        32: 3
+        64: 3
+        128: 3
+        256: 3
+        512: False
+
+                
+dis:
+    type: generators.discriminator::Discriminator
+    param:
+      size: 512
+      channels:      
+        4: 512
+        8: 512
+        16: 512
+        32: 512
+        64: 512
+        128: 256
+        256: 128  
+        512: 64     
+      is_square_image: False
+
+
+data:
+    type: data.fashion_data::Dataset
+    preprocess_mode: resize_and_crop
+    path: ./dataset/deepfashion
+    num_workers: 8
+    sub_path: 512-352
+    resolution: 512
+    scale_param: 0.1
+    train:
+      batch_size: 2   # real_batch_size: 2 * 2 (source-->target & target --> source) * 4 (GPUs) = 16
+      distributed: True
+    val:
+      batch_size: 2
+      distributed: True
+
+
