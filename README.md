@@ -15,9 +15,10 @@ The PyTorch implementation for our paper "[Neural Texture Extraction and Distrib
 <p align='center'>  
   <img src='https://user-images.githubusercontent.com/30292465/163326992-f9781520-5891-4b09-b146-c5a7101e8549.png' width='500'/>
 </p>
+
 ## News
 
-This repo is under development now. Some features have not been tested. It will be finished in the next few days.
+- This repo is under development now. Some features have not been tested. It will be finished in the next few days.
 
 ## Installation
 
@@ -136,7 +137,7 @@ If you change the number of GPUs, you may need to modify the batch_size in `./co
 
 ## Inference
 
-- **Download the trained weights for [512x352 images](https://drive.google.com/file/d/1CKHtZS8z7hIT6O8AQzSxMN55zGMuLjuJ/view?usp=sharing) and [256x176 images]()**. Put the obtained checkpoints under `./result/fashion_512` and `./result/fashion_256` respectively.
+- **Download the trained weights for [512x352 images](https://drive.google.com/file/d/1eM2ikE2o0T5376rAV5nrTNjDE4Rh18_a/view?usp=sharing) and [256x176 images](https://drive.google.com/file/d/1CnXLtpTGSKHMeOyyjd5GkaMVIF2eBtkz/view?usp=sharing)**. Put the obtained checkpoints under `./result/fashion_512` and `./result/fashion_256` respectively.
 
 - Run the following code to evaluate the trained model:
 

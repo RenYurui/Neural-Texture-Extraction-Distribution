@@ -1,3 +1,4 @@
+from email.policy import strict
 import os
 import glob
 import time
@@ -161,18 +162,22 @@ class BaseTrainer(object):
 
     def _load_checkpoint(self, checkpoint_path, resume=True):
         checkpoint = torch.load(checkpoint_path, map_location=lambda storage, loc: storage)
-
-        self.net_G.load_state_dict(checkpoint['net_G'], strict=False) 
         self.net_G_ema.load_state_dict(checkpoint['net_G_ema'])
-        print('load [net_G] and [net_G_ema] from {}'.format(checkpoint_path))
-        if self.opt.phase == 'train' and resume:
+        print('load [net_G_ema] from {}'.format(checkpoint_path))
+        if self.opt.phase == 'train':
+            if 'net_G' not in checkpoint:
+                self.net_G.module.load_state_dict(checkpoint['net_G_ema']) 
+                print('load_from_net_ema')
+            else:
+                self.net_G.load_state_dict(checkpoint['net_G'])  
             self.net_D.load_state_dict(checkpoint['net_D'])
-            print('load [net_D] from {}'.format(checkpoint_path))
-            self.opt_G.load_state_dict(checkpoint['opt_G'])
-            self.opt_D.load_state_dict(checkpoint['opt_D'])
-            self.sch_G.load_state_dict(checkpoint['sch_G'])
-            self.sch_D.load_state_dict(checkpoint['sch_D'])
-            print('load optimizers and schdules from {}'.format(checkpoint_path))
+            print('load [net_G] and [net_D] from {}'.format(checkpoint_path))
+            if resume:
+                self.opt_G.load_state_dict(checkpoint['opt_G'])
+                self.opt_D.load_state_dict(checkpoint['opt_D'])
+                self.sch_G.load_state_dict(checkpoint['sch_G'])
+                self.sch_D.load_state_dict(checkpoint['sch_D'])
+                print('load optimizers and schdules from {}'.format(checkpoint_path))
 
 
         if resume or self.opt.phase == 'test':
