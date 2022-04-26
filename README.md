@@ -12,13 +12,26 @@
 
 The PyTorch implementation for our paper "[Neural Texture Extraction and Distribution for  Controllable Person Image Synthesis]()" (**CVPR2022 Oral**)
 
+We propose a Neural-Texture-Extraction-Distribution operation for controllable person image synthesis. Our model can be used to control the **pose** and **appearance**  of a reference image:
+
+- **Pose Control**
 <p align='center'>  
-  <img src='https://user-images.githubusercontent.com/30292465/163326992-f9781520-5891-4b09-b146-c5a7101e8549.png' width='500'/>
+  <img src='https://user-images.githubusercontent.com/30292465/165339608-73e1147b-136f-49c2-8a62-b6d2ebd44467.gif' width='700'/>
 </p>
+
+
+- **Appearance Control**
+<p align='center'>
+  <img src='https://user-images.githubusercontent.com/30292465/165339667-b43fe5c8-7a93-4212-84c6-cb5a1158ca52.gif' width='700'/>
+</p>
+
+
 
 ## News
 
 - This repo is under development now. Some features have not been tested. It will be finished in the next few days.
+
+  
 
 ## Installation
 
@@ -120,18 +133,18 @@ Coming Soon
 
 ## Training 
 
-This project supports multi-GPUs training. The following code shows an example for training the model with $512 \times 352$ images using 2 GPUs.
+This project supports multi-GPUs training. The following code shows an example for training the model with 512x352 images using 4 GPUs.
 
   ```bash
-CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch \
---nproc_per_node=2 \
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch \
+--nproc_per_node=4 \
 --master_port 1234 train.py \
 --config ./config/fashion_512.yaml \
 --name $name_of_your_experiment
   ```
 
 All configs for this experiment are saved in `./config/fashion_512.yaml`. 
-If you change the number of GPUs, you may need to modify the batch_size in `./config/fashion_512.yaml` to ensure using a same batch_size.
+If you change the number of GPUs, you may need to modify the batch_size in `./config/fashion_512.yaml` to ensure using a same `batch_size`.
 
 
 
@@ -162,3 +175,4 @@ If you change the number of GPUs, you may need to modify the batch_size in `./co
   ```
 
 The result images are save in `./result/fashion_512/inference ` and `./result/fashion_256/inference `. 
+
