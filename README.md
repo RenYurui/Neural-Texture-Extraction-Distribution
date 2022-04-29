@@ -105,7 +105,7 @@ python appearance_control.py \
 
 #### Colab Demo
 
-Please check the [Colab Demos](https://drive.google.com/file/d/1g5dKpDQbZ60DeqdraZHxGgaNSj2BFQOT/view?usp=sharing) for pose control and appearance control.
+Please check the [Colab Demos](https://colab.research.google.com/drive/1DTUx6yIo912sRMSEgwOSe6vPgMY-hMRE?usp=sharing) for pose control and appearance control.
 
 
 
