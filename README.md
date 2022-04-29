@@ -29,7 +29,8 @@ We propose a Neural-Texture-Extraction-Distribution operation for controllable p
 
 ## News
 
-- This repo is under development now. Some features have not been tested. It will be finished in the next few days.
+- **2022.4.30** Colab demos are provided for quick exploration.
+- **2022.4.28** Code for PyTorch is available now!
 
   
 
@@ -49,13 +50,17 @@ conda create -n NTED python=3.6
 conda activate NTED
 conda install -c pytorch pytorch=1.7.1 torchvision cudatoolkit=10.2
 
-# 2. Install other dependencies
+# 2. Clone the Repo and Install dependencies
+git clone --recursive https://github.com/RenYurui/Neural-Texture-Extraction-Distribution.git
 pip install -r requirements.txt
 
 # 3. Install mmfashion (for appearance control only)
 pip install mmcv==0.5.1
 pip install pycocotools==2.0.4
-cd ./third_part/mmdetection
+cd ./scripts
+chmod +x insert_mmfashion2mmdetection.sh
+./insert_mmfashion2mmdetection.sh
+cd ../third_part/mmdetection
 pip install -v -e .
 ```
 
@@ -75,6 +80,7 @@ cd scripts
 Run the following code for the results.
 
 ```bash
+PATH_TO_OUTPUT=./demo_results
 python demo.py \
 --config ./config/fashion_512.yaml \
 --which_iter 495400 \
@@ -99,7 +105,7 @@ python appearance_control.py \
 
 #### Colab Demo
 
-Coming Soon
+Please check the [Colab Demos](https://colab.research.google.com/drive/1f1hndbjPt8gbqWVpgJJxFP884nwkWFXG#scrollTo=Df2dVJiHKkl3) for pose control and appearance control.
 
 
 
@@ -109,7 +115,7 @@ Coming Soon
 
 - Unzip `img_highres.zip`. You will need to ask for password from the [dataset maintainers](http://mmlab.ie.cuhk.edu.hk/projects/DeepFashion/InShopRetrieval.html). Then rename the obtained folder as **img** and put it under the `./dataset/deepfashion` directory. 
 
-- We split the train/test set following [GFLA][https://github.com/RenYurui/Global-Flow-Local-Attention]. Several images with significant occlusions are removed from the training set. Download the train/test pairs and the keypoints `pose.zip` extracted with [Openpose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) by runing: 
+- We split the train/test set following [GFLA](https://github.com/RenYurui/Global-Flow-Local-Attention). Several images with significant occlusions are removed from the training set. Download the train/test pairs and the keypoints `pose.zip` extracted with [Openpose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) by runing: 
 
   ```bash
   cd scripts
@@ -144,7 +150,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch \
   ```
 
 All configs for this experiment are saved in `./config/fashion_512.yaml`. 
-If you change the number of GPUs, you may need to modify the batch_size in `./config/fashion_512.yaml` to ensure using a same `batch_size`.
+If you change the number of GPUs, you may need to modify the `batch_size` in `./config/fashion_512.yaml` to ensure using a same `batch_size`.
 
 
 
@@ -174,5 +180,5 @@ If you change the number of GPUs, you may need to modify the batch_size in `./co
   --output_dir ./result/fashion_256/inference 
   ```
 
-The result images are save in `./result/fashion_512/inference ` and `./result/fashion_256/inference `. 
+The result images are save in `./result/fashion_512/inference` and `./result/fashion_256/inference`. 
 
