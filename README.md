@@ -125,7 +125,7 @@ Please check the [Colab Demos](https://colab.research.google.com/drive/1DTUx6yIo
   Or you can download these files manually：
 
   - Download the train/test pairs from [Google Drive](https://drive.google.com/drive/folders/1PhnaFNg9zxMZM-ccJAzLIt2iqWFRzXSw?usp=sharing) including **train_pairs.txt**, **test_pairs.txt**, **train.lst**, **test.lst**. Put these files under the  `./dataset/deepfashion` directory. 
-  - Download the keypoints `pose.zip` extracted with Openpose from [Google Driven](https://drive.google.com/file/d/1HXu7LDLW45Aw0n3a1W9HuUXARCfXAU7R/view?usp=sharing). Unzip and put the obtained floder under the  `./dataset/deepfashion` directory.
+  - Download the keypoints `pose.rar` extracted with Openpose from [Google Driven](https://drive.google.com/file/d/1waNzq-deGBKATXMU9JzMDWdGsF4YkcW_/view?usp=sharing). Unzip and put the obtained floder under the  `./dataset/deepfashion` directory.
 
 - Run the following code to save images to lmdb dataset.
 
@@ -181,4 +181,3 @@ If you change the number of GPUs, you may need to modify the `batch_size` in `./
   ```
 
 The result images are save in `./result/fashion_512/inference` and `./result/fashion_256/inference`. 
-
