@@ -174,6 +174,7 @@ If you change the number of GPUs, you may need to modify the `batch_size` in `./
   --config ./config/fashion_512.yaml \
   --name fashion_512 \
   --no_resume \
+    --which_iter 495400 \
   --output_dir ./result/fashion_512/inference 
   
   # run evaluation for 256x176 images
@@ -183,6 +184,7 @@ If you change the number of GPUs, you may need to modify the `batch_size` in `./
   --config ./config/fashion_256.yaml \
   --name fashion_256 \
   --no_resume \
+  --which_iter 495400 \
   --output_dir ./result/fashion_256/inference 
   ```
 
