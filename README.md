@@ -29,6 +29,12 @@ We propose a Neural-Texture-Extraction-Distribution operation for controllable p
 
 ## News
 
+
+- **2022.6.25** Web demo available through Replicate:
+
+    :rocket:
+    [Demo and Docker image on Replicate](https://replicate.com/renyurui/controllable-person-synthesis)
+
 - **2022.4.30** Colab demos are provided for quick exploration.
 - **2022.4.28** Code for PyTorch is available now!
 

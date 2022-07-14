@@ -1,0 +1,36 @@
+# Configuration for Cog ⚙️
+# Reference: https://github.com/replicate/cog/blob/main/docs/yaml.md
+
+build:
+  # set to true if your model requires a GPU
+  gpu: true
+  cuda: "11.4"
+
+  # system_packages:
+  
+
+  # python version in the form '3.8' or '3.8.12'
+  python_version: "3.8"
+
+  python_packages:
+    - "torch==1.8.1"
+    - "torchvision==0.9.1"
+    - imageio==2.10.3
+    - lmdb==1.2.1
+    # - opencv-python==4.5.4.58
+    - "opencv-python-headless==4.6.0.66"
+    - Pillow==8.3.2
+    - PyYAML==5.4.1
+    - scikit-image==0.17.2
+    - scipy==1.5.4
+    - tensorboard==2.6.0
+    - tqdm==4.62.3
+    - ninja==1.10.2.3
+    - protobuf==3.20.1
+  # commands run after the environment is setup
+  run:
+    - "echo Done setting up environment!"
+   
+
+# predict.py defines how predictions are run on your model
+predict: "predict.py:Predictor"
